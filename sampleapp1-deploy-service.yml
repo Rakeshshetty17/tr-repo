@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sampleapp1-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: trialapp
+  template:
+    metadata:
+      labels:
+        app: trialapp
+    spec:
+      containers:
+      - name: k8s-trialapp
+        image: asregi.azurecr.io/trialapp:latest
+        resources:
+          limits:
+            memory: "256Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 80
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: trialapp-service
+spec:
+  selector:
+    app: trialapp
+  type: LoadBalancer
+  ports:
+  - port: 8080
+    targetPort: 80
