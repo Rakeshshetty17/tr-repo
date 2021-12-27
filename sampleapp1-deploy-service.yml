@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: k8s-trialapp
-        image: rak1reg.azurecr.io/Rakeshshetty17/tr-repo
+        image: rak1reg.azurecr.io/sample-rakesh
         imagePullPolicy: Always
         resources:
           limits:
